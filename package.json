@@ -1,0 +1,11 @@
+{
+  "name": "card-images",
+  "version": "0.1.0",
+  "description": "This repo contains images for the Talishar project.",
+  "scripts": {},
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^1.7.3",
+    "sharp": "^0.33.4"
+  }
+}
