@@ -14,7 +14,7 @@ const s3Client = new S3Client({
 });
 
 function moveFileToUploaded(filePath, relativePath) {
-    const uploadedFolder = '../media/uploaded/public';
+    const uploadedFolder = './media/uploaded/public';
     const destinationDir = path.join(uploadedFolder, relativePath);
     const destinationPath = path.join(destinationDir, path.basename(filePath));
 
@@ -65,7 +65,7 @@ async function uploadDirectory(dirPath, s3Prefix, relativePath) {
 
 async function uploadAll() {
     try {
-        const rootFolder = '../media/missing';
+        const rootFolder = './media/missing';
         const foldersToUpload = ['cardimages', 'cardsquares', 'crops'];
         const uploadPromises = [];
 

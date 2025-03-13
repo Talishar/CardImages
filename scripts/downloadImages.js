@@ -19,10 +19,12 @@ const localeDictionary = {
 };
 
 // API to retrieve all the existing cards by language
-const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/?language=${locale}&limit=50&offset=0&ordering=cards`;
+// const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/?language=${locale}&limit=50&offset=0&ordering=cards`;
 
 // API to retrieve a specific collection and language
-// const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/set_code=EVO&language=${locale}`;
+// const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/set_code=HNT&language=${locale}`;
+
+const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/?language=${locale}&set_code=HNT`;
 
 // API to retrieve a specific card by card code and language
 // const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/?q=AKO004&language=${locale}`;
@@ -94,5 +96,3 @@ async function main() {
 }
 
 main();
-
-
