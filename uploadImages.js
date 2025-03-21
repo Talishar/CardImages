@@ -1,11 +1,11 @@
-require("dotenv").config();
+require('dotenv').config();
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 const fs = require('fs');
 const path = require('path');
 const mime = require('mime-types');
 
 const s3Client = new S3Client({
-    region: "auto",
+    region: 'auto',
     endpoint: process.env.CLOUDFLARE_ENDPOINT,
     credentials: {
         accessKeyId: process.env.CLOUDFLARE_ACCESS_KEY,
@@ -14,7 +14,7 @@ const s3Client = new S3Client({
 });
 
 function moveFileToUploaded(filePath, relativePath) {
-    const uploadedFolder = './media/uploaded/public';
+    const uploadedFolder = path.join(__dirname, 'media', 'uploaded', 'public');
     const destinationDir = path.join(uploadedFolder, relativePath);
     const destinationPath = path.join(destinationDir, path.basename(filePath));
 
@@ -65,7 +65,7 @@ async function uploadDirectory(dirPath, s3Prefix, relativePath) {
 
 async function uploadAll() {
     try {
-        const rootFolder = './media/missing';
+        const rootFolder = path.join(__dirname, 'media', 'missing');
         const foldersToUpload = ['cardimages', 'cardsquares', 'crops'];
         const uploadPromises = [];
 
@@ -82,9 +82,9 @@ async function uploadAll() {
         }
 
         await Promise.all(uploadPromises);
-        console.log("✅ All the images has been successfully uploaded");
+        console.log('✅ All the images has been successfully uploaded');
     } catch (error) {
-        console.error("❌ Error while uploading: ", error);
+        console.error('❌ Error while uploading: ', error);
         process.exit(1);
     }
 };
