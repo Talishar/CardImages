@@ -14,8 +14,7 @@ const s3Client = new S3Client({
 });
 
 function moveFileToUploaded(filePath, relativePath) {
-    // const uploadedFolder = path.join(__dirname, 'media', 'uploaded', 'public');
-    const uploadedFolder = path.join(__dirname, 'test_media', 'uploaded', 'public');
+    const uploadedFolder = path.join(__dirname, 'media', 'uploaded', 'public');
     const destinationDir = path.join(uploadedFolder, relativePath);
     const destinationPath = path.join(destinationDir, path.basename(filePath));
 
@@ -29,8 +28,7 @@ async function uploadFile(filePath, fileKey, relativePath) {
 
     const uploadParams = {
         Bucket: process.env.CLOUDFLARE_BUCKET_NAME,
-        // Key: `public/${fileKey}`,
-        Key: `test/${fileKey.replace('\\', /\//g)}`,
+        Key: `public/${fileKey.replace(/\\/g, '/')}`,
         Body: fileStream,
         ContentType: contentType
     };
@@ -38,7 +36,7 @@ async function uploadFile(filePath, fileKey, relativePath) {
     try {
         const command = new PutObjectCommand(uploadParams);
         await s3Client.send(command);
-        // moveFileToUploaded(filePath, relativePath);
+        moveFileToUploaded(filePath, relativePath);
         console.log(`✅ Uploaded: ${fileKey}`);
     } catch (error) {
         console.error(`❌ Error uploading ${fileKey}:`, error);
@@ -67,8 +65,7 @@ async function uploadDirectory(dirPath, s3Prefix, relativePath) {
 
 async function uploadAll() {
     try {
-        // const rootFolder = path.join(__dirname, 'media', 'missing');
-        const rootFolder = path.join(__dirname, 'test_media', 'missing');
+        const rootFolder = path.join(__dirname, 'media', 'missing');
         const foldersToUpload = ['cardimages', 'cardsquares', 'crops'];
         const uploadPromises = [];
 
