@@ -28,7 +28,7 @@ async function uploadFile(filePath, fileKey, relativePath) {
 
     const uploadParams = {
         Bucket: process.env.CLOUDFLARE_BUCKET_NAME,
-        Key: `public/${fileKey}`,
+        Key: `public/${fileKey.replace(/\\/g, '/')}`,
         Body: fileStream,
         ContentType: contentType
     };
