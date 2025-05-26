@@ -8,13 +8,14 @@ const { saveCardImage, resizeImage, combineImages } = require('./utils/sharpHelp
     to download the imagen, resize it and create a square copy.
 */
 
-const languagesList = ['en', 'es', 'fr', 'de', 'it', 'ja'];
+// const languagesList = ['en', 'es', 'fr', 'de', 'it', 'ja'];
+const languagesList = ['fr', 'ja'];
 const localeDictionary = {
-    en: 'english',
-    es: 'spanish',
+    // en: 'english',
+    // es: 'spanish',
     fr: 'french',
-    de: 'german',
-    it: 'italian',
+    // de: 'german',
+    // it: 'italian',
     ja: 'japanese'
 };
 
@@ -24,7 +25,7 @@ const localeDictionary = {
 // API to retrieve a specific collection and language
 // const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/set_code=HNT&language=${locale}`;
 
-const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/?language=${locale}&set_code=HNT`;
+const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/?language=${locale}&set_code=SEA`;
 
 // API to retrieve a specific card by card code and language
 // const composeInitialApiUrl = (locale) => `https://cards.fabtcg.com/api/search/v1/cards/?q=AKO004&language=${locale}`;
