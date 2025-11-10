@@ -2,23 +2,27 @@
   <img src="https://github.com/Talishar/Talishar/blob/main/Images/TalisharLogo.webp?raw=true" width="623" height="278" alt="Talishar" />
 </p>
 
-<h3 align="center">Talishar is a browser-based platform to play Flesh and Blood. This is an unofficial project not linked to or endorsed by Legend Story Studios.</h3>
+<h3 align="center">Talishar is a browser-based platform to play Flesh and Blood. It is a fan-made FABTCG project not associated with Legend Story Studios.</h3>
 
-[![license](https://flat.badgen.net/github/license/talishar/talishar)](./LICENSE)
+[![license](https://flat.badgen.net/github/license/talishar/CardImages)](./LICENSE)
 [![discord](https://flat.badgen.net/discord/online-members/JykuRkdd5S?icon=discord)](https://discord.gg/JykuRkdd5S)
-[![patreon](https://flat.badgen.net/badge/become/a%20patreon/F96854?icon=patreon)](https://www.patreon.com/talishar)
-[![twitter](https://flat.badgen.net/twitter/follow/talishar_online?icon=twitter)](https://twitter.com/talishar_online/)
-[![github](https://flat.badgen.net/github/last-commit/Talishar/Card-Images?icon=github)](https://github.com/Talishar/Card-Images/)
+[![twitter](https://flat.badgen.net/badge/twitter/@talishar_online/1DA1F2?icon=twitter)](https://twitter.com/talishar_online)
+[![bluesky](https://flat.badgen.net/badge/bluesky/pvtvoid/1185FE?icon=bluesky)](https://bsky.app/profile/pvtvoid.bsky.social)
+[![patreon](https://flat.badgen.net/badge/become/a%20patreon/F96854?icon=patreon)](https://linktr.ee/Talishar)
 
 Visit [Talishar.net](https://talishar.net/) to get playing Flesh & Blood in your browser right now!
 
-# Getting started with Card-Images
+## Getting started with CardImages
 
-This is the repository to store all the images and generate images in a language other than English used in the Talishar project.
+This repository stores and generates card images for the Talishar project in multiple languages. It handles downloading cards from official sources, resizing images, creating variants, and generating translation reference files for non-English languages.
 
-## Requirements / How to install:
+### Related Repositories
+- [Talishar](https://github.com/Talishar/Talishar) - PHP backend with game logic and API
+- [Talishar-FE](https://github.com/Talishar/Talishar-FE) - TypeScript/React frontend interface
 
-### Prerequesites:
+## Requirements / How to install
+
+### Prerequisites:
 
 - node.js (version 10 or higher)
 - git
@@ -35,6 +39,28 @@ cd Card-Images
 npm install
 ```
 
+## Project Structure
+
+```
+CardImages/
+├── media/              # Card images organized by language
+│   ├── en/            # English card images
+│   └── [lang]/        # Other language card images
+├── scripts/           # Utility scripts for image processing
+├── uploadImages.js    # Script to manage image uploads
+├── package.json       # Node.js dependencies
+└── README.md         # This file
+```
+
+### Image Storage
+- **`media/[language]/`** - Contains card images for each language
+  - Images are downloaded from official sources and resized for optimal display
+  - Square copies are created for consistent UI rendering
+  - Used by both backend (for exports/displays) and frontend (for card rendering)
+
+### Generated Files
+- **Translation reference JSON files** - Compare original card IDs with reprint set IDs for multi-language support
+
 ## Scripts
 
 ### downloadImages
@@ -43,7 +69,7 @@ npm install
 node downloadImages.js
 ```
 
-Use this script when you need to download a card, a set or the whole language collection to download the image, resize it and create a square copy.
+Use this script when you need to download a card, a set or the whole language collection. It downloads the image, resizes it, and creates a square copy.
 
 ### generateTranslatedCollections
 
@@ -51,11 +77,17 @@ Use this script when you need to download a card, a set or the whole language co
 node generateTranslatedCollections.js
 ```
 
-Use this script when a new reprint set like History Pack is released to generate a JSON to compare the original card ID with the new collection ID. This JSON should be used in Talishar-FE to translate to any language rather than english.
+Use this script when a new reprint set like History Pack is released. It generates a JSON file that compares original card IDs with new collection IDs. This JSON is used in Talishar-FE to translate cards to any language.
 
-Keep in mind sometimes some cards can not be able to generate the reference translation, check the error in the terminal to check it manually.
+**Note**: Sometimes cards cannot generate reference translations automatically. Check terminal errors and verify manually.
 
-Learn more about the Talishar-FE project here: [Talishar-FE](https://github.com/Talishar/Talishar-FE)
+### uploadImages
+
+```
+node uploadImages.js
+```
+
+Manages uploading processed images to the appropriate locations for use by backend and frontend.
 
 ## Disclaimer
 
