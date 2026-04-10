@@ -30,6 +30,7 @@ playground-temp
 temp
 TODOs.md
 .eslintcache
+**/missing/
 
 *.cpuprofile
 *.local
