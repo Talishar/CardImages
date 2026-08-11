@@ -30,7 +30,10 @@ async function uploadFile(filePath, fileKey, relativePath) {
         Bucket: process.env.CLOUDFLARE_BUCKET_NAME,
         Key: `public/${fileKey.replace(/\\/g, '/')}`,
         Body: fileStream,
-        ContentType: contentType
+        ContentType: contentType,
+        // Card IDs are stable URLs and may occasionally receive corrected art,
+        // so use a strong cache with revalidation instead of immutable caching.
+        CacheControl: 'public, max-age=2592000, stale-while-revalidate=86400'
     };
 
     try {
